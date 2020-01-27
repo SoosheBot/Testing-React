@@ -1,24 +1,44 @@
-import React from 'react';
+import React from "react";
 import { render, fireEvent, wait } from "@testing-library/react";
-import StarWarsCharacters from './StarWarsCharacters';
-import { getData as mockGetData } from '../api';
+import StarWarsCharacters from "./StarWarsCharacters";
+import { getData as mockGetData } from "../api";
 
-// jest.mock('../api');
-
-test('renders page with characters, previous button, and next button', async () => {
-    render(<StarWarsCharacters />)
-});
+jest.mock('../api');
 
 
-test('next button and previous button render, and fire on click', () => {
-    const { getByText } = render(<StarWarsCharacters />);
-    const nextButton = getByText(/next/i);
-    const previousButton = getByText(/previous/i);
-    fireEvent.click(nextButton);
-    fireEvent.click(previousButton);
-})
+const fakeData = {
+ previous: null,
+ next: 'text',
+ results: [{name:'Bob', url:'www.bob.com'}, {name:'2', url:'2'}, {name:'3', url:'3'}] 
+};
 
-// test('', () => {
-
+// test('renders complete page with list of characters, previous button, and next button', () => {
+//     render(<StarWarsCharacters />)
 // });
-    // mockGetData.mockResolvedValue
+
+// test('next button and previous button render, and fire on click', () => {
+//     const { getByText } = render(<StarWarsCharacters />);
+    
+//     const nextButton = getByText(/next/i);
+//     const previousButton = getByText(/previous/i);
+
+//     fireEvent.click(nextButton);
+//     fireEvent.click(previousButton);
+// });
+
+test('api works', async () => {
+    mockGetData.mockResolvedValue(fakeData);
+    const { getByText } = render(<StarWarsCharacters />);
+
+    const nextButton = getByText(/next/i);
+
+    fireEvent.click(nextButton);
+
+    await wait(() => expect(getByText(/bob/i)));
+    getByText('Bob')
+
+    expect(mockGetData).toHaveBeenCalledTimes(1);
+    expect(mockGetData).toHaveBeenCalledWith('https://swapi.co/api/people');
+
+
+});
