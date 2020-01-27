@@ -10,11 +10,17 @@ export default function StarWarsCharacters() {
   const [next, setNext] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [characters, setCharacters] = useState([]);
+  // const [people, setPeople] = useState([]);
+  // const [planets, setPlanets] = useState([]);
+  // const [starships, setStarships] = useState([]);
+  // const [vehicles, setVehicles] = useState([]);
+  // const [species, setSpecies] = useState([]);
+
   useEffect(() => {
     setIsLoading(true);
     const getCharacters = async () => {
       const characters = await getData(url);
-      console.log(characters);
+      console.log('const characters =', characters);
       setNext(characters.next);
       setPrevious(characters.previous);
       setCharacters(characters.results);
