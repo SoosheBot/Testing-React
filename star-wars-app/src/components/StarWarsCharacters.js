@@ -11,7 +11,7 @@ export default function StarWarsCharacters() {
   const [isLoading, setIsLoading] = useState(false);
   const [characters, setCharacters] = useState([]);
   // const [people, setPeople] = useState([]);
-  // const [planets, setPlanets] = useState([]);
+
   // const [starships, setStarships] = useState([]);
   // const [vehicles, setVehicles] = useState([]);
   // const [species, setSpecies] = useState([]);
