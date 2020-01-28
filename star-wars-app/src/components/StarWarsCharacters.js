@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Loader from "react-loader-spinner";
+import Select from 'react-dropdown-select';
 
 import { getData } from "../api";
 import "./star-wars-characters.css";
@@ -41,6 +42,7 @@ export default function StarWarsCharacters() {
 
   return (
     <div>
+      <Select>Menu</Select>
       {isLoading ? (
         <Loader
           type="ThreeDots"
@@ -56,6 +58,7 @@ export default function StarWarsCharacters() {
           ))}
         </>
       )}
+      
       <div className="buttons">
         <button onClick={goToPrevious} disabled={!previous}>
           Previous
@@ -64,6 +67,7 @@ export default function StarWarsCharacters() {
           Next
         </button>
       </div>
+
     </div>
   );
 }

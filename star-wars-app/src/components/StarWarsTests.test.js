@@ -9,7 +9,11 @@ jest.mock('../api');
 const fakeData = {
  previous: null,
  next: 'text',
- results: [{name:'Bob', url:'www.bob.com'}, {name:'2', url:'2'}, {name:'3', url:'3'}] 
+ results: [
+     {name:'Bob', url:'www.bob.com'}, 
+     {name:'2', url:'2'}, 
+     {name:'3', url:'3'}
+    ] 
 };
 
 
@@ -30,6 +34,5 @@ test('api works', async () => {
 
     expect(mockGetData).toHaveBeenCalledTimes(1);
     expect(mockGetData).toHaveBeenCalledWith('https://swapi.co/api/people');
-
 
 });
