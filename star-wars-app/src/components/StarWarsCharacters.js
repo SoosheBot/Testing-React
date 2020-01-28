@@ -10,6 +10,7 @@ export default function StarWarsCharacters() {
   const [previous, setPrevious] = useState();
   const [next, setNext] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, toggleIsOpen] = useState(false);
   const [characters, setCharacters] = useState([]);
   // const [people, setPeople] = useState([]);
 
@@ -41,7 +42,7 @@ export default function StarWarsCharacters() {
   };
 
   return (
-    <div>
+    <div> 
       {isLoading ? (
         <Loader
           type="ThreeDots"
