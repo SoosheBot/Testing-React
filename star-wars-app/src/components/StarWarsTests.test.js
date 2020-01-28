@@ -5,6 +5,7 @@ import { getData as mockGetData } from "../api";
 
 jest.mock('../api');
 
+
 const fakeData = {
  previous: null,
  next: 'text',
@@ -14,6 +15,8 @@ const fakeData = {
      {name:'3', url:'3'}
     ] 
 };
+
+
 
 test('api works', async () => {
     mockGetData.mockResolvedValue(fakeData);
