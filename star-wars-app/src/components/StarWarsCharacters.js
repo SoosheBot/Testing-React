@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Loader from "react-loader-spinner";
+import Select from 'react-dropdown-select';
 
 
 import { getData } from "../api";
@@ -12,11 +13,7 @@ export default function StarWarsCharacters() {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, toggleIsOpen] = useState(false);
   const [characters, setCharacters] = useState([]);
-  // const [people, setPeople] = useState([]);
 
-  // const [starships, setStarships] = useState([]);
-  // const [vehicles, setVehicles] = useState([]);
-  // const [species, setSpecies] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -43,6 +40,7 @@ export default function StarWarsCharacters() {
 
   return (
     <div> 
+      <Select options={url} onChange={(chars) => setCharacters(chars)}/><br /><br />
       {isLoading ? (
         <Loader
           type="ThreeDots"
