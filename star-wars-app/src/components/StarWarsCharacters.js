@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loader from "react-loader-spinner";
+import Select from 'react-dropdown-select';
+
 
 import { getData } from "../api";
 import "./star-wars-characters.css";
@@ -9,12 +11,15 @@ export default function StarWarsCharacters() {
   const [previous, setPrevious] = useState();
   const [next, setNext] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, toggleIsOpen] = useState(false);
   const [characters, setCharacters] = useState([]);
+
+
   useEffect(() => {
     setIsLoading(true);
     const getCharacters = async () => {
       const characters = await getData(url);
-      console.log(characters);
+      console.log('const characters =', characters);
       setNext(characters.next);
       setPrevious(characters.previous);
       setCharacters(characters.results);
@@ -34,7 +39,8 @@ export default function StarWarsCharacters() {
   };
 
   return (
-    <div>
+    <div> 
+      <Select options={url} onChange={(chars) => setCharacters(chars)}/><br /><br />
       {isLoading ? (
         <Loader
           type="ThreeDots"
@@ -50,6 +56,7 @@ export default function StarWarsCharacters() {
           ))}
         </>
       )}
+      
       <div className="buttons">
         <button onClick={goToPrevious} disabled={!previous}>
           Previous
@@ -58,6 +65,7 @@ export default function StarWarsCharacters() {
           Next
         </button>
       </div>
+
     </div>
   );
 }
